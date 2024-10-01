@@ -1,0 +1,110 @@
+
+<app-success-modal></app-success-modal>
+<div style="text-align: center;">
+    <img src="/assets/images/blogd-logo.jpg" alt="Dashboard Image" style="width: 100%; height: 70vh; object-fit: cover;" />
+    
+    <div style="margin: 20px 0; display: flex; justify-content: center; gap: 15px;">
+        <button (click)="refreshData()">{{ showAllBlogs ? 'Close All Blogs' : 'All Blogs' }}</button>
+        <button (click)="viewMyBlogs()"> {{ activetab === 'my-blogs' ? 'Close My Blogs' : 'View My Blogs'  }}</button>
+
+        <button (click)="openPopup()">Add Blog</button>
+</div>
+
+<div *ngIf="activetab === 'all-blogs' || activetab === 'my-blogs'" style="margin-bottom: 1%;">
+    <div *ngIf="allBlogs?.length || my-blogs?.length" style="display: flex;padding-inline: 2%;margin-top: 2%;margin-left: 10%;">
+            <select class="form-control" placeholder="Select one Category" [(ngModel)]="selectedCategory" style="width:150px; margin-left: 2%;">
+                <option value="" disabled selected>Select a category</option>
+                <option *ngFor="let category of categories"   [value]="category">{{ category }}</option>
+            </select>
+        <input type="date" class="form-control date-search" name="fromDate" [(ngModel)]="fromDate" style="width: 150px; margin-left: 2%" />
+        <input type="date" class="form-control date-search" name="toDate" [(ngModel)]="toDate" style="width: 150px; margin-left: 2%"/>
+        <button type="button" style="margin-left: 2%" class="btn btn-primary" (click)="searchBlogs()">Search
+        </button>
+    </div>
+</div>
+
+<div *ngIf="showAllBlogs" class="container mt-4">
+    <div *ngIf="allBlogs.length === 0" class="alert alert-warning">No Blogs Available</div>
+    <div class="row">
+        <div *ngFor="let blog of allBlogs" class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <p><strong>Blog Name:</strong> {{ blog.blogname }}</p>
+                    <p><strong>Author Name:</strong> {{ blog.authorname }}</p>
+                    <p><strong>Article:</strong> {{ blog.article }}</p>
+                    <p><strong>Category:</strong> {{ blog.category }}</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div  *ngIf="activetab === 'my-blogs'" class="container mt-4"> 
+    <div *ngIf="allBlogs.length === 0" class="alert alert-warning">
+        No Blogs Available
+    </div>
+    <div class="row">
+        <div *ngFor="let blog of allBlogs" class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <p><strong>Blog Name:</strong> {{ blog.blogname }}</p>
+                    <p><strong>Author Name:</strong> {{ blog.authorname }}</p>
+                    <p><strong>Article:</strong> {{ blog.article }}</p>
+                    <p><strong>Category:</strong> {{ blog.category }}</p>
+            
+                    <button class="delete-button" (click)="confirmDelete(blog.blogname)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+  
+   
+<div *ngIf="displayStyle === 'block'" class="popup" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+        <h2>Add Blog</h2>
+        <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="blog-form" (click)="$event.stopPropagation()">
+            <div class="form-row">
+                <div class="form-group col-md-10">
+                    <label for="blogname">Blog Name:</label>
+                    <input id="blogname" formControlName="blogname" class="form-control" required>
+                    -<div *ngIf="blogForm.controls['blogname'].hasError('exists')" class="error-message">
+                        Blog name already exists.
+                      </div>
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="article">Article:</label>
+                    <textarea id="article" formControlName="article" class="form-control" required></textarea>
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="authorname">Author Name:</label>
+                    <input id="authorname" formControlName="authorname" class="form-control" required>
+                </div>
+
+                <div class="form-group col-md-10">
+                    <div>
+                        <label for="category">Category:</label>
+                        <select id="category" formControlName="category" required>
+                            <option value="" disabled>Select a category</option>
+                            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" (click)="closePopup()" class="btn btn-secondary">Close</button>
+            </div>
+        </form>
+    </div>
+</div>

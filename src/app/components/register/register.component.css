@@ -1,0 +1,173 @@
+@charset "utf-8";
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    backdrop-filter: blur(5px); /* Optional: adds a blur effect */
+
+}
+.main {
+  height: calc(100vh);
+  width: calc(100vw);
+  background-image: url("/assets/images/pexels-pixaba.jpg"); /* Update the path */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+.header-name{
+  margin-left: 95px;
+  
+}
+
+/* ---------- GENERAL ---------- */
+
+* {
+  box-sizing: border-box;
+  margin: 0px auto;
+}
+
+input {
+  border: 1px solid black;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1em;
+  padding: 0;
+  -webkit-appearance: none;
+}
+
+p {
+  line-height: 1em;
+}
+
+.clearfix {
+  *zoom: 1;
+
+  /* &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  } */
+  /* 
+  &:after {
+    clear: both;
+  } */
+}
+
+.container {
+  left: 45%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- LOGIN ---------- */
+
+#login form {
+  width: 250px;
+}
+
+#login,
+.logo {
+  display: inline-block;
+  width: 60%;
+}
+
+#login {
+  padding: 0px 22px;
+  width: 80%;
+}
+
+.logo {
+  color: #fff;
+  font-size: 30px;
+  line-height: 40px;
+  margin-top: 184px;
+}
+
+#login form span.fa {
+  background-color: #fff;
+  border-radius: 3px 0px 0px 3px;
+  color: #000;
+  display: block;
+  float: left;
+  height: 50px;
+  font-size: 24px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
+}
+
+#login form input {
+  height: 35px;
+}
+
+fieldset {
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+.text-danger {
+  font-weight: 700;
+}
+
+.validationMsg {
+  width: 150%;
+  text-align: left;
+  height: 20px;
+}
+
+#login form input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"] {
+  background-color: #fff;
+  border-radius: 0px 3px 3px 0px;
+  color: #000;
+  margin-bottom: 0.5em;
+  padding: 0 16px;
+  width: 200px;
+}
+
+.btn {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #000000;
+  color: #eee;
+  font-weight: bold;
+  /* margin-bottom: 2em; */
+  text-transform: uppercase;
+  padding: 1px 10px;
+  height: 30px;
+}
+
+#login form input[type="submit"]:hover {
+  background-color: #d44179;
+}
+
+#login>p {
+  text-align: center;
+}
+
+#login>p span {
+  padding-left: 5px;
+}
+
+.middle {
+  display: flex;
+  width: 600px;
+  margin-top: 40px;
+}
+
+.row {
+  margin-top: 15px;
+}
+
+a:hover {
+  color: rgb(115, 111, 111);
+}
