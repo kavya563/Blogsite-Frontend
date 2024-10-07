@@ -53,7 +53,6 @@ describe('BlogSiteServiceService', () => {
       article: 'article',
       authorname: 'john',
       blogname: 'blog',
-      timestamp: '2024-10-09'
   });
     expect(spy).toHaveBeenCalled();
   });
@@ -61,7 +60,7 @@ describe('BlogSiteServiceService', () => {
   it('should call register function', () => {
     const service: BlogSiteServiceService = TestBed.get(BlogSiteServiceService);
     const spy = spyOn(service, 'register').and.callThrough()
-    service.register({userName: 'test',
+    service.register({username: 'test',
       password: 'article',
       email: 'john@gmail.com',
   });

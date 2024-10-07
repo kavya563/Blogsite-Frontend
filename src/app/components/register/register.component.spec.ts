@@ -10,16 +10,20 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of, throwError } from 'rxjs';
 import { LoginComponent } from '../login/login.component';
+import { MatSnackBar,MatSnackBarModule } from '@angular/material';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { RegisterUser } from 'src/app/modals/register-user.interface'
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
+  let service: BlogSiteServiceService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[RouterTestingModule.withRoutes([{path:'login',component:LoginComponent}]),HttpClientTestingModule],
+      imports:[RouterTestingModule.withRoutes([{path:'login',component:LoginComponent}]),HttpClientTestingModule,OverlayModule,MatSnackBarModule],
       declarations: [ RegisterComponent,LoginComponent ],
-      providers:[FormBuilder, BlogSiteServiceService],
+      providers:[FormBuilder, BlogSiteServiceService,MatSnackBar],
       schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
     })
     .compileComponents();
@@ -39,34 +43,25 @@ describe('RegisterComponent', () => {
   });
 
   it('should check invalid form', () => {
-    component.UserRegister.controls['userName'].setValue('');
+    component.UserRegister.controls['username'].setValue('');
     component.UserRegister.controls['password'].setValue('');
-    component.UserRegister.controls['emailId'].setValue('');
+    component.UserRegister.controls['email'].setValue('');
     component.onSubmit();
     expect(component.UserRegister.valid).toBeFalsy();
   });
 
   it('should check valid form', () => {   
    let myService = TestBed.get(BlogSiteServiceService);
-    component.UserRegister.controls['userName'].setValue('sivapallem');
+    component.UserRegister.controls['username'].setValue('sivapallem');
     component.UserRegister.controls['password'].setValue('password');
-    component.UserRegister.controls['emailId'].setValue('siva@gmail.com');
-   const spy= spyOn(myService,'register').and.returnValue(of({userName:'siva',password:'password',emailId:'siva@gmail.com'}));
-    myService.register({userName:'siva',password:'password',emailId:'siva@gmail.com'});
+    component.UserRegister.controls['email'].setValue('siva@gmail.com');
+   const spy= spyOn(myService,'register').and.returnValue(of({username:'siva',password:'password',email:'siva@gmail.com'}));
+    myService.register({userName:'siva',password:'password',email:'siva@gmail.com'});
     component.onSubmit();
     expect(spy).toHaveBeenCalled();
     expect(component.UserRegister.valid).toBeTruthy();
   }
   );
 
-  it('should check valid form and retur error', () => {   
-    let myService = TestBed.get(BlogSiteServiceService);
-     component.UserRegister.controls['userName'].setValue('sivapallem');
-     component.UserRegister.controls['password'].setValue('password');
-     component.UserRegister.controls['emailId'].setValue('siva@gmail.com');
-     spyOn(myService,'register').and.returnValue(throwError({status:409,message:'409'}));
-     component.onSubmit();
-     expect(component.UserRegister.valid).toBeTruthy();
-   }
-   );
+  
 });

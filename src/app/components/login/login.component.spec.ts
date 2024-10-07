@@ -32,14 +32,14 @@ describe('LoginComponent', () => {
   });
 
   it('should check invalid form', () => {
-    component.UserLogin.controls['userName'].setValue('');
+    component.UserLogin.controls['username'].setValue('');
     component.UserLogin.controls['password'].setValue('');
     component.OnSubmit();
     expect(component.UserLogin.valid).toBeFalsy();
   });
 
   it('should check valid form', () => {
-    component.UserLogin.controls['userName'].setValue('sivapallem');
+    component.UserLogin.controls['username'].setValue('sivapallem');
     component.UserLogin.controls['password'].setValue('password');
     let myService = TestBed.get(BlogSiteServiceService);
     //spyOn(myService,'checkUserCredentials').and.returnValue(of({userName:'siva',password:'password'}));
@@ -49,7 +49,7 @@ describe('LoginComponent', () => {
   });
 
   it('should check for error when subsribe form', () => {
-    component.UserLogin.controls['userName'].setValue('sivapallem');
+    component.UserLogin.controls['username'].setValue('sivapallem');
     component.UserLogin.controls['password'].setValue('password');
     let myService = TestBed.get(BlogSiteServiceService);
     spyOn(myService,'checkUserCredentials').and.returnValue(throwError({status:400,message:'400'}));
@@ -58,7 +58,7 @@ describe('LoginComponent', () => {
   });
 
   it('should check for error other than 400 when subscribe form', () => {
-    component.UserLogin.controls['userName'].setValue('sivapallem');
+    component.UserLogin.controls['username'].setValue('sivapallem');
     component.UserLogin.controls['password'].setValue('password');
     let myService = TestBed.get(BlogSiteServiceService);
     spyOn(myService,'checkUserCredentials').and.returnValue(throwError({status:409,message:'409'}));

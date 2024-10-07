@@ -6,13 +6,13 @@
     justify-content: center;
     width: 50%;
     height: 100%;
-    backdrop-filter: blur(5px); /* Optional: adds a blur effect */
+  
 
 }
 .main {
   height: calc(100vh);
   width: calc(100vw);
-  background-image: url("/assets/images/pexels-pixaba.jpg"); /* Update the path */
+  background-image: url("/assets/images/login.jpg"); /* Update the path */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -20,7 +20,7 @@
 }
 .header-name{
   margin-left: 95px;
-  
+  color: white;
 }
 
 /* ---------- GENERAL ---------- */
@@ -67,7 +67,7 @@ p {
 /* ---------- LOGIN ---------- */
 
 #login form {
-  width: 250px;
+  width: 230px;
 }
 
 #login,

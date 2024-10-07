@@ -32,10 +32,10 @@ export class BlogDashboardComponent implements OnInit {
   }
   ngOnInit() {
     this.blogForm = this.fb.group({
-      blogname: ['', [Validators.required, Validators.maxLength(1000),Validators.required]],
-      article: ['', [Validators.required, Validators.minLength(5),Validators.maxLength(1000),Validators.required]],
+      blogname: ['', [Validators.required, Validators.maxLength(1000),Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      article: ['', [Validators.required, Validators.minLength(5),Validators.maxLength(1000),Validators.required,Validators.pattern('[a-zA-Z ]*')]],
       authorname: ['', [Validators.required]],
-      category: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.maxLength(20)]],
+      category: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.maxLength(20),Validators.pattern('[a-zA-Z ]*')]],
     });
   }
  
